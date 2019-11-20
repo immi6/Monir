@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>web map</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Alatsi&display=swap');
+		body{
+			margin: auto 0;
+			padding: 0;
+			background: #C6FFDD;  /* fallback for old browsers */
+			background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);  /* Chrome 10-25, Safari 5.1-6 */
+			background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+			text-align: center;
+			min-height: 100vh;
+			display: grid;
+			grid-template-columns: 1fr 4fr 1fr;
+			grid-template-rows: 1fr 2fr 1fr;
+			grid-template-areas: 
+			"header header header"
+			"... mapiv ..."
+			". . ."
+		}
+
+		.header {
+			display: grid;
+			grid-area: header;
+			place-items: center;
+			font-family: 'Alatsi', sans-serif;
+			color: #0F2027;  /* fallback for old browsers */
+
+		}
+		h1, h4 {
+			margin: 0;
+		}
+
+		.mapdiv {
+			grid-area: mapiv;
+			border-radius: 10px;
+			height: 50vh;
+			max-width: 1000px;
+		}
+
+		@media only screen and (max-width: 600px) {
+			body{
+				display: grid;
+				grid-template-columns: 10px 1fr 10px;
+				grid-template-rows: 100px 1fr 10px;
+				grid-template-areas: 
+				"header header header"
+				". mapiv ."
+				". . ."
+			}
+
+			.header {
+				grid-area: header;
+			}
+
+			.mapdiv {
+				grid-area: mapiv;
+			}
+		}
+	</style>
+
+	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+<body>
+	<div id="header" class="header">
+		<h1>My Clients</h1>
+	</div>
+
+
+	<div id="mapdiv" class="mapdiv"></div>
+
+
+	
+
+	<script>
+		var mymap = L.map('mapdiv');
+		mymap.setView([20, 0], 1);
+
+		var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+		mymap.addLayer(backgroundLayer);
+
+		L.marker([23.79, 90.38], {title: 'Dhaka'}).addTo(mymap).bindPopup('<h4>Per O. Seglen</h4><hr><p>Thesis: Causal relationship between article citedness and journal impact</p>');
+		L.marker([19.07, 72.92], {title: 'Mumbai'}).addTo(mymap).bindPopup('<h4>Per O. Seglen</h4><hr><p>Thesis: Causal relationship between article citedness and journal impact</p>');
+		L.marker([28.64, 77.26], {title: 'New Delhi'}).addTo(mymap).bindPopup('<h4>Per O. Seglen</h4><hr><p>Thesis: Causal relationship between article citedness and journal impact</p>');
+		L.marker([38.89, -77.03], {title: 'Washington'}).addTo(mymap).bindPopup('<h4>Per O. Seglen</h4><hr><p>Thesis: Causal relationship between article citedness and journal impact</p>');
+		L.marker([51.48, -0.06], {title: 'London'}).addTo(mymap).bindPopup('<h4>Per O. Seglen</h4><hr><p>Thesis: Causal relationship between article citedness and journal impact</p>');
+
+	</script>
+	
+</body>
+</html>
